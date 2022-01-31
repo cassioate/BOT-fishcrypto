@@ -196,12 +196,13 @@ while True:
         conectarFunc()
         addRodInThelake("carteira")
 
-        time.sleep(15)
-        switchScreen()
+        #As linhas abaixo são para dar alt tab em uma segunda aba, onde irá rodar uma dual account, não é necessario em conta unica.
+        # time.sleep(15)
+        # switchScreen()
 
-        conectarFunc()
-        addRodInThelake("carteira2")
-        switchScreen()
+        # conectarFunc()
+        # addRodInThelake("carteira2")
+        # switchScreen()
         time.sleep(29000)
 
     except BaseException as err:
