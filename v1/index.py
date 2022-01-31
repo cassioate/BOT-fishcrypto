@@ -190,7 +190,7 @@ def switchScreen():
     time.sleep(1)
 
 #CONNECT
-time.sleep(29000)
+time.sleep(2)
 while True:
     try:
         conectarFunc()
