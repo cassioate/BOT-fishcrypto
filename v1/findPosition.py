@@ -36,9 +36,6 @@ pyautogui.keyUp("alt")
 # x, y = procurarLocalizacaoDaImagemPelosEixos("addShared")
 # pyautogui.click(x, y+50, duration=3)
 
-
-
-
 # def dragForTheLeft():
 #     xSettings, ySettings = pyautogui.locateCenterOnScreen('./assets/'+ "Settingsname"+'.png', confidence=0.9)
 #     xF, yF = pyautogui.locateCenterOnScreen('./assets/'+ "FAmarelo"+'.png', confidence=0.9)   
