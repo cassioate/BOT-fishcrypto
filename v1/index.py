@@ -30,11 +30,11 @@ def searchForHighConfidenceImage(imagem):
                     print("Ainda esta carregando")
                 else:
                     if (procurarImagemSemRetornarErro("ErrorClose")):
-                        pyautogui.click(searchForHighConfidenceImage("ErrorClose"), duration=3)
+                        pyautogui.click(pyautogui.locateCenterOnScreen("./assets/ErrorClose.png", confidence=confidence), duration=3)
                     else:
                         loading = False
         if (procurarImagemSemRetornarErro("ErrorClose")):
-            pyautogui.click(searchForHighConfidenceImage("ErrorClose"), duration=3)
+            pyautogui.click(pyautogui.locateCenterOnScreen("./assets/ErrorClose.png", confidence=confidence), duration=3)
         img = pyautogui.locateCenterOnScreen('./assets/'+ imagem+'.png', confidence=confidence)
         contadorProcurarImagem += 1
         if contadorProcurarImagem >= 500:
@@ -54,11 +54,11 @@ def searchForMidConfidenceImage(imagem):
                     print("Ainda esta carregando")
                 else:
                     if (procurarImagemSemRetornarErro("ErrorClose")):
-                        pyautogui.click(searchForHighConfidenceImage("ErrorClose"), duration=3)
+                        pyautogui.click(pyautogui.locateCenterOnScreen("./assets/ErrorClose.png", confidence=confidence), duration=3)
                     else:
                         loading = False
         if (procurarImagemSemRetornarErro("ErrorClose")):
-            pyautogui.click(searchForHighConfidenceImage("ErrorClose"), duration=3)
+            pyautogui.click(pyautogui.locateCenterOnScreen("./assets/ErrorClose.png", confidence=confidence), duration=3)
         img = pyautogui.locateCenterOnScreen('./assets/'+ imagem+'.png', confidence=confidence)
         contadorProcurarImagem += 1
         if contadorProcurarImagem >= 500:
@@ -78,11 +78,11 @@ def searchForLowConfidenceImage(imagem):
                     print("Ainda esta carregando")
                 else:
                     if (procurarImagemSemRetornarErro("ErrorClose")):
-                        pyautogui.click(searchForHighConfidenceImage("ErrorClose"), duration=3)
+                        pyautogui.click(pyautogui.locateCenterOnScreen("./assets/ErrorClose.png", confidence=confidence), duration=3)
                     else:
                         loading = False
         if (procurarImagemSemRetornarErro("ErrorClose")):
-            pyautogui.click(searchForHighConfidenceImage("ErrorClose"), duration=3)
+            pyautogui.click(pyautogui.locateCenterOnScreen("./assets/ErrorClose.png", confidence=confidence), duration=3)
         img = pyautogui.locateCenterOnScreen('./assets/'+ imagem+'.png', confidence=confidence)
         contadorProcurarImagem += 1
         if contadorProcurarImagem >= 500:
@@ -196,13 +196,12 @@ while True:
         conectarFunc()
         addRodInThelake("carteira")
 
-        #As linhas abaixo são para dar alt tab em uma segunda aba, onde irá rodar uma dual account, não é necessario em conta unica.
-        # time.sleep(15)
-        # switchScreen()
+        time.sleep(15)
+        switchScreen()
 
-        # conectarFunc()
-        # addRodInThelake("carteira2")
-        # switchScreen()
+        conectarFunc()
+        addRodInThelake("carteira2")
+        switchScreen()
         time.sleep(29000)
 
     except BaseException as err:
