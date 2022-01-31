@@ -31,10 +31,10 @@ while vender == True:
 
     if(procurarImagemSemRetornarErro("Sell")):
         x, y = searchForHighConfidenceImage("Sell")
-        pyautogui.click(x, y, duration=3)
+        pyautogui.click(x, y, duration=1)
         x, y = searchForHighConfidenceImage("SellButton")
-        pyautogui.click(x, y, duration=3)
+        pyautogui.click(x, y, duration=1)
         x, y = searchForHighConfidenceImage("ErrorClose")
-        pyautogui.click(x, y, duration=3)
+        pyautogui.click(x, y, duration=1)
     else:
         vender = False
