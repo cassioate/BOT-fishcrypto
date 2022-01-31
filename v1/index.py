@@ -195,13 +195,6 @@ while True:
     try:
         conectarFunc()
         addRodInThelake("carteira")
-
-        time.sleep(15)
-        switchScreen()
-
-        conectarFunc()
-        addRodInThelake("carteira2")
-        switchScreen()
         time.sleep(29000)
 
     except BaseException as err:
