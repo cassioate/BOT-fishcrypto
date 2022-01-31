@@ -10,3 +10,13 @@ por uma imagem que represente uma das carteiras de varas compartilhadas que voc�
 
 Faça a mesma coisa para a imagem "carteiraBorrowed".
 ![alt text](https://github.com/cassioate/fishcrypto/blob/contaUnica/v1/readme/rodCompartilhadaBorrowed.png)
+
+
+Após isso, utilize o comando "pip install -r requirements.txt" no terminal dentro da pasta do bot:
+![alt text](https://github.com/cassioate/fishcrypto/blob/contaUnica/v1/readme/pipInstall.png)
+
+
+Agora, utilize o comando "pip index.py" no terminal dentro da pasta do bot:
+![alt text](https://github.com/cassioate/fishcrypto/blob/contaUnica/v1/readme/pipInstall.png)
+
+Mude para a aba do FishCrypto que já está aberta e dê um click no meio da tela, agora basta deixar o bot funcionar.
