@@ -20,7 +20,7 @@ def conectarFunc():
 def searchForHighConfidenceImage(imagem):
     contadorProcurarImagem = 0
     img = None
-    confidence = 0.95
+    confidence = 0.85
     loading = True
     while img == None:
         print("Procurando imagem em searchForLowConfidenceImage: "+ imagem)
@@ -190,7 +190,12 @@ def switchScreen():
     time.sleep(1)
 
 #CONNECT
+x, y = searchForHighConfidenceImage("addShared")
+print("ACHEI")
+print(x, y)
+pyautogui.click(x, y+10, duration=3)
 time.sleep(29000)
+time.sleep(2)
 while True:
     try:
         conectarFunc()
