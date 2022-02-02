@@ -20,28 +20,18 @@ def conectarFunc():
             else:
                 connect = False
             
-
 def searchForHighConfidenceImage(imagem):
-    print("Procurando imagem em searchForHighConfidenceImage: "+ imagem)
     contadorProcurarImagem = 0
     img = None
     confidence = 0.9
     loading = True
     while img == None:
-        if (procurarImagemSemRetornarErro("Loading")):
-            while loading == True:
-                if (procurarImagemSemRetornarErro("Loading")):
-                    print("Ainda esta carregando")
-                else:
-                    if (procurarImagemSemRetornarErro("ErrorClose")):
-                        pyautogui.click(pyautogui.locateCenterOnScreen("./assets/ErrorClose.png", confidence=confidence), duration=3)
-                    else:
-                        loading = False
+        print("Procurando imagem em searchForHighConfidenceImage: "+ imagem)
         if (procurarImagemSemRetornarErro("ErrorClose")):
             pyautogui.click(pyautogui.locateCenterOnScreen("./assets/ErrorClose.png", confidence=confidence), duration=3)
         img = pyautogui.locateCenterOnScreen('./assets/'+ imagem+'.png', confidence=confidence)
         contadorProcurarImagem += 1
-        if contadorProcurarImagem >= 500:
+        if contadorProcurarImagem >= 15:
             raise Exception('Erro ao achar a imagem: ' + imagem)
     return img
 
@@ -148,10 +138,16 @@ def switchScreen():
     pyautogui.keyUp("alt")
     time.sleep(1)
 
+def switchScreenForThePrincipal():
+    if not procurarImagemSemRetornarErro("telaPrincipal"):
+        print("Mudando para a tela principal")
+        switchScreen()
+
 #CONNECT
 time.sleep(2)
 while True:
     try:
+        switchScreenForThePrincipal()
         conectarFunc()
         addRodInThelake("carteira")
 
@@ -167,4 +163,3 @@ while True:
     except BaseException as err:
         print("Ocorreu um ERRO:")
         print(err)
-        conectar = True
