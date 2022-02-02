@@ -14,64 +14,20 @@ def conectarFunc():
             pyautogui.click(searchForHighConfidenceImage("AssinarMetamask"), duration=3)
             connect = False
         elif(procurarImagemSemRetornarErro("FAmarelo")):
-            connect = False
+            time.sleep(5)
+            if(procurarImagemSemRetornarErro("FAmareloNaoCarregou")):
+                connect = True
+            else:
+                connect = False
             
 
 def searchForHighConfidenceImage(imagem):
-    contadorProcurarImagem = 0
-    img = None
-    confidence = 0.85
-    loading = True
-    while img == None:
-        print("Procurando imagem em searchForLowConfidenceImage: "+ imagem)
-        if (procurarImagemSemRetornarErro("Loading")):
-            while loading == True:
-                if (procurarImagemSemRetornarErro("Loading")):
-                    print("Ainda esta carregando")
-                else:
-                    if (procurarImagemSemRetornarErro("ErrorClose")):
-                        pyautogui.click(pyautogui.locateCenterOnScreen("./assets/ErrorClose.png", confidence=confidence), duration=3)
-                    else:
-                        loading = False
-        if (procurarImagemSemRetornarErro("ErrorClose")):
-            pyautogui.click(pyautogui.locateCenterOnScreen("./assets/ErrorClose.png", confidence=confidence), duration=3)
-        img = pyautogui.locateCenterOnScreen('./assets/'+ imagem+'.png', confidence=confidence)
-        contadorProcurarImagem += 1
-        if contadorProcurarImagem >= 500:
-            raise Exception('Erro ao achar a imagem: ' + imagem)
-    return img
-
-def searchForMidConfidenceImage(imagem):
+    print("Procurando imagem em searchForHighConfidenceImage: "+ imagem)
     contadorProcurarImagem = 0
     img = None
     confidence = 0.9
     loading = True
     while img == None:
-        print("Procurando imagem em searchForLowConfidenceImage: "+ imagem)
-        if (procurarImagemSemRetornarErro("Loading")):
-            while loading == True:
-                if (procurarImagemSemRetornarErro("Loading")):
-                    print("Ainda esta carregando")
-                else:
-                    if (procurarImagemSemRetornarErro("ErrorClose")):
-                        pyautogui.click(pyautogui.locateCenterOnScreen("./assets/ErrorClose.png", confidence=confidence), duration=3)
-                    else:
-                        loading = False
-        if (procurarImagemSemRetornarErro("ErrorClose")):
-            pyautogui.click(pyautogui.locateCenterOnScreen("./assets/ErrorClose.png", confidence=confidence), duration=3)
-        img = pyautogui.locateCenterOnScreen('./assets/'+ imagem+'.png', confidence=confidence)
-        contadorProcurarImagem += 1
-        if contadorProcurarImagem >= 500:
-            raise Exception('Erro ao achar a imagem: ' + imagem)
-    return img
-
-def searchForLowConfidenceImage(imagem):
-    contadorProcurarImagem = 0
-    img = None
-    confidence = 0.6
-    loading = True
-    while img == None:
-        print("Procurando imagem em searchForLowConfidenceImage: "+ imagem)
         if (procurarImagemSemRetornarErro("Loading")):
             while loading == True:
                 if (procurarImagemSemRetornarErro("Loading")):
@@ -90,18 +46,19 @@ def searchForLowConfidenceImage(imagem):
     return img
 
 def lookIfTheBotShouldStart(imagem):
+    print("Procurando imagem em lookIfTheBotShouldStart: "+ imagem)
     contadorProcurarImagem = 0
     img = None
-    confidence = 0.6
+    confidence = 0.85
     while img == None:
         error = pyautogui.locateCenterOnScreen('./assets/ErrorClose.png', confidence=confidence)
         if error != None:
             raise Exception('Erro ao achar a imagem: ' + imagem)
-        print("Procurando imagem em searchForLowConfidenceImage: "+ imagem)
         img = pyautogui.locateCenterOnScreen('./assets/'+ imagem+'.png', confidence=confidence)
         contadorProcurarImagem += 1
-        if contadorProcurarImagem >= 25:
+        if contadorProcurarImagem >= 10:    
             return None
+    print("Procurando imagem em lookIfTheBotShouldStart: "+ imagem +"valor da img:"+img)
     return img
 
 def procurarImagemSemRetornarErro(imagem):
@@ -109,17 +66,6 @@ def procurarImagemSemRetornarErro(imagem):
     contador = 0
     time.sleep(3)
     confidence = 0.95
-    print("Procurando imagem em procurarImagemSemRetornarErro: "+ imagem)
-    img = pyautogui.locateCenterOnScreen('./assets/'+ imagem+'.png', confidence=confidence)
-    print(img)
-    if img != None:
-        return True
-    return False
-
-
-def procurarImagemSemRetornarErroMidConfidence(imagem):
-    time.sleep(5)
-    confidence = 0.9
     print("Procurando imagem em procurarImagemSemRetornarErro: "+ imagem)
     img = pyautogui.locateCenterOnScreen('./assets/'+ imagem+'.png', confidence=confidence)
     print(img)
@@ -168,17 +114,30 @@ def clickAddSharedAndChooseWallet(carteira):
         pyautogui.click(img)
         chooseRodShared()
 
+def addRodInThelakeForLoop(rod):
+    pyautogui.click(searchForHighConfidenceImage(rod), duration=3)
+    if lookIfTheBotShouldStart("MoedaDaRod") != None:
+        pyautogui.click(searchForHighConfidenceImage("MoedaDaRod"), duration=3)
+    elif lookIfTheBotShouldStart("MoedaDaRod2") != None:
+        pyautogui.click(searchForHighConfidenceImage("MoedaDaRod2"), duration=3)
+    pyautogui.click(searchForHighConfidenceImage("Pick"), duration=3)
+    waitForTheAvailablesRodsEnd()
+
 def addRodInThelake(carteiraDaVaraCompartilhada):
     time.sleep(15)
-    if lookIfTheBotShouldStart("addRod") != None:
+    if lookIfTheBotShouldStart("addRod") != None or lookIfTheBotShouldStart("addRodOpcao2") != None or lookIfTheBotShouldStart("addRodOpcao3") != None:
         clickAddSharedAndChooseWallet("rodCompartilhadaUM/"+carteiraDaVaraCompartilhada)
         clickAddSharedAndChooseWallet("rodCompartilhadaDOIS/"+carteiraDaVaraCompartilhada)
+        
         for i in range(7):
-            pyautogui.click(searchForLowConfidenceImage("addRod"), duration=3)
-            pyautogui.click(searchForHighConfidenceImage("MoedaDaRod"), duration=3)
-            pyautogui.click(searchForHighConfidenceImage("Pick"), duration=3)
-            waitForTheAvailablesRodsEnd()
-
+            if lookIfTheBotShouldStart("addRod") != None:
+                addRodInThelakeForLoop("addRod")
+            elif lookIfTheBotShouldStart("addRodOpcao2") != None:
+                addRodInThelakeForLoop("addRodOpcao2")
+            elif lookIfTheBotShouldStart("addRodOpcao3") != None:
+                addRodInThelakeForLoop("addRodOpcao3")
+            else:
+                print("Não foi encontrado nenhum spot para inserir uma vara")
     else:
         print("O lago já está cheio")
 
@@ -190,12 +149,8 @@ def switchScreen():
     time.sleep(1)
 
 #CONNECT
-x, y = searchForHighConfidenceImage("addShared")
-print("ACHEI")
-print(x, y)
-pyautogui.click(x, y+10, duration=3)
-time.sleep(29000)
 time.sleep(2)
+time.sleep(18100)
 while True:
     try:
         conectarFunc()
@@ -207,6 +162,7 @@ while True:
         conectarFunc()
         addRodInThelake("carteira2")
         switchScreen()
+        print("Entrando em modo de espera por 8 horas.")
         time.sleep(29000)
 
     except BaseException as err:
