@@ -58,7 +58,7 @@ def lookIfTheBotShouldStart(imagem):
         contadorProcurarImagem += 1
         if contadorProcurarImagem >= 10:    
             return None
-    print("Procurando imagem em lookIfTheBotShouldStart: "+ imagem +"valor da img:"+img)
+    print("Procurando imagem em lookIfTheBotShouldStart: "+ imagem)
     return img
 
 def procurarImagemSemRetornarErro(imagem):
@@ -150,7 +150,6 @@ def switchScreen():
 
 #CONNECT
 time.sleep(2)
-time.sleep(18100)
 while True:
     try:
         conectarFunc()
