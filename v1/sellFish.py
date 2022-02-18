@@ -30,6 +30,10 @@ def procurarImagemSemRetornarErro(imagem):
     return False
 
 vender = True
+time.sleep(2000)
+if(procurarImagemSemRetornarErro("fishCryptoLogo")):
+    x, y = searchForHighConfidenceImage("fishCryptoLogo")
+    pyautogui.click(x, y, duration=1)
 while vender == True:
     time.sleep(2)
     try:
@@ -48,7 +52,6 @@ while vender == True:
     except BaseException as err:
         print("OCORREU UM ERRO!")
         if(not procurarImagemSemRetornarErro("InventoryDentroDoInventory") and not procurarImagemSemRetornarErro("ErrorClose")):
-            print("ENTREI")
             pyautogui.keyDown("ctrl")
             pyautogui.press("f5")
             pyautogui.keyUp("ctrl")
