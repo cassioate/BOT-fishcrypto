@@ -6,6 +6,8 @@ pyautogui.PAUSE = 2
 
 def conectarFunc():
     connect = True
+    if (procurarImagemSemRetornarErro("fishCryptoLogo")):
+        pyautogui.click(searchForHighConfidenceImage("fishCryptoLogo"), duration=3)
     pyautogui.keyDown("ctrl")
     pyautogui.press("f5")
     pyautogui.keyUp("ctrl")
@@ -24,7 +26,7 @@ def conectarFunc():
 def searchForHighConfidenceImage(imagem):
     contadorProcurarImagem = 0
     img = None
-    confidence = 0.8
+    confidence = 0.9
     loading = True
     while img == None:
         print("Procurando imagem em searchForHighConfidenceImage: "+ imagem)
@@ -32,18 +34,15 @@ def searchForHighConfidenceImage(imagem):
             pyautogui.click(pyautogui.locateCenterOnScreen("./assets/ErrorClose.png", confidence=confidence), duration=3)
         img = pyautogui.locateCenterOnScreen('./assets/'+ imagem+'.png', confidence=confidence)
         contadorProcurarImagem += 1
-        print("IMG")
-        print(img)
         if contadorProcurarImagem >= 15:
             raise Exception('Erro ao achar a imagem: ' + imagem)
-    pyautogui.moveTo(img)
     return img
 
 def lookIfTheBotShouldStart(imagem):
     print("Procurando imagem em lookIfTheBotShouldStart: "+ imagem)
     contadorProcurarImagem = 0
     img = None
-    confidence = 0.8
+    confidence = 0.9
     while img == None:
         error = pyautogui.locateCenterOnScreen('./assets/ErrorClose.png', confidence=confidence)
         if error != None:
@@ -59,7 +58,7 @@ def procurarImagemSemRetornarErro(imagem):
     loop = True
     contador = 0
     time.sleep(3)
-    confidence = 0.8
+    confidence = 0.95
     print("Procurando imagem em procurarImagemSemRetornarErro: "+ imagem)
     img = pyautogui.locateCenterOnScreen('./assets/'+ imagem+'.png', confidence=confidence)
     if img != None:
@@ -68,7 +67,7 @@ def procurarImagemSemRetornarErro(imagem):
 
 def procurarLocalizacaoDaImagemPelosEixos(imagem):
     if procurarImagemSemRetornarErro(imagem):
-        confidence = 0.8
+        confidence = 0.9
         x, y = pyautogui.locateCenterOnScreen('./assets/'+ imagem+'.png', confidence=confidence)
         return x, y
     else:
@@ -148,11 +147,10 @@ def switchScreen():
 #CONNECT
 time.sleep(2)
 while True:
-    try:
-        print("-- INICIANDO --")
+    # try:
         timeDeEntrada = datetime.datetime.utcnow()
         print(timeDeEntrada)
-
+        
         conectarFunc()
         addRodInThelake("carteira")
         time.sleep(10)
@@ -168,12 +166,11 @@ while True:
         timeDeSaida = datetime.datetime.utcnow()
         print("Entrando em modo de espera por 8 horas.")
         print(timeDeSaida)
-        print("-- ENCERRANDO --")
         for i in range(7250):
             moveRange = round(random.uniform(100,700), 10)
             moveRange2 = round(random.uniform(100,700), 10)
             pyautogui.moveTo(moveRange, moveRange2, duration = 4)
 
-    except BaseException as err:
-        print("Ocorreu um ERRO:")
-        print(err)
+    # except BaseException as err:
+    #     print("Ocorreu um ERRO:")
+    #     print(err)
