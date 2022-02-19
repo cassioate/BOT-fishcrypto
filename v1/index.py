@@ -116,7 +116,7 @@ def addRodInThelakeForLoop(rod):
         pyautogui.click(searchForHighConfidenceImage("MoedaDaRod"), duration=3)
     elif lookIfTheBotShouldStart("MoedaDaRod2") != None:
         pyautogui.click(searchForHighConfidenceImage("MoedaDaRod2"), duration=3)
-    # pyautogui.click(searchForHighConfidenceImage("Pick"), duration=3)
+    pyautogui.click(searchForHighConfidenceImage("Pick"), duration=3)
     waitForTheAvailablesRodsEnd()
 
 def addRodInThelake(carteiraDaVaraCompartilhada):
@@ -147,7 +147,7 @@ def switchScreen():
 #CONNECT
 time.sleep(2)
 while True:
-    # try:
+    try:
         timeDeEntrada = datetime.datetime.utcnow()
         print(timeDeEntrada)
         
@@ -171,6 +171,6 @@ while True:
             moveRange2 = round(random.uniform(100,700), 10)
             pyautogui.moveTo(moveRange, moveRange2, duration = 4)
 
-    # except BaseException as err:
-    #     print("Ocorreu um ERRO:")
-    #     print(err)
+    except BaseException as err:
+        print("Ocorreu um ERRO:")
+        print(err)
