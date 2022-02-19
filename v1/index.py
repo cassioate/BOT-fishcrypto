@@ -144,6 +144,11 @@ def switchScreen():
     pyautogui.keyUp("alt")
     time.sleep(1)
 
+def switchScreenToTheMain():
+    while not procurarImagemSemRetornarErro("Principal"):
+        switchScreen()
+    print("Estamos na tela principal!")
+
 #CONNECT
 time.sleep(2)
 while True:
@@ -151,6 +156,7 @@ while True:
         timeDeEntrada = datetime.datetime.utcnow()
         print(timeDeEntrada)
         
+        switchScreenToTheMain()
         conectarFunc()
         addRodInThelake("carteira")
         time.sleep(10)
